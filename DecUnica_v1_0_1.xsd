@@ -1,0 +1,654 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:typ="mfp:anaf:dgti:declaratie_unica:types:v1" xmlns="mfp:anaf:dgti:declaratie_unica:declaratie:v1" targetNamespace="mfp:anaf:dgti:declaratie_unica:declaratie:v1" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.02" xml:lang="ro">
+	<xs:import namespace="mfp:anaf:dgti:declaratie_unica:types:v1" schemaLocation="DecUnicaTypes.xsd"/>
+	<xs:element name="declaratieUnica">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="angajator" type="AngajatorType"/>
+				<xs:element name="asigurat" type="AsiguratType" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+			<xs:attribute name="luna_r" type="typ:LunaSType" use="required"/>
+			<xs:attribute name="an_r" type="typ:AnSType" use="required"/>
+			<xs:attribute name="d_rec" type="typ:FlagSType" default="0"/>
+			<xs:attribute name="nume_declar" use="required">
+				<xs:simpleType>
+					<xs:restriction base="xs:token">
+						<xs:minLength value="1"/>
+						<xs:maxLength value="75"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="prenume_declar" use="required">
+				<xs:simpleType>
+					<xs:restriction base="xs:token">
+						<xs:minLength value="1"/>
+						<xs:maxLength value="75"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="functie_declar" use="required">
+				<xs:simpleType>
+					<xs:restriction base="xs:token">
+						<xs:minLength value="1"/>
+						<xs:maxLength value="50"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:complexType name="AngajatorType">
+		<xs:sequence>
+			<xs:element name="angajatorA" type="AngajatorAType" maxOccurs="29"/>
+			<xs:element name="angajatorB" type="AngajatorBType"/>
+			<xs:element name="angajatorC1" type="AngajatorC1Type" minOccurs="0"/>
+			<xs:element name="angajatorC2" type="AngajatorC2Type" minOccurs="0"/>
+			<xs:element name="angajatorC3" type="AngajatorC3Type" minOccurs="0"/>
+			<xs:element name="angajatorC4" type="AngajatorC4Type" minOccurs="0"/>
+			<xs:element name="angajatorC5" type="AngajatorC5Type" minOccurs="0" maxOccurs="10"/>
+			<xs:element name="angajatorC6" type="AngajatorC6Type"/>
+			<xs:element name="angajatorC7" type="AngajatorC7Type" minOccurs="0"/>
+			<xs:element name="angajatorD" type="AngajatorDType" minOccurs="0"/>
+			<xs:element name="angajatorE1" type="AngajatorE1Type" minOccurs="0"/>
+			<xs:element name="angajatorE2" type="AngajatorE2Type" minOccurs="0"/>
+			<xs:element name="angajatorE3" type="AngajatorE3Type" minOccurs="0"/>
+			<xs:element name="angajatorE4" type="AngajatorE4Type" minOccurs="0"/>
+			<xs:group ref="AngajatorFGroup" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="cif" type="typ:CifSType" use="required"/>
+		<xs:attribute name="rgCom" type="typ:RegComertSType"/>
+		<xs:attribute name="caen" type="typ:CaenSType" use="required"/>
+		<xs:attribute name="den" use="required">
+			<xs:simpleType>
+				<xs:restriction base="xs:token">
+					<xs:minLength value="1"/>
+					<xs:maxLength value="200"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="adrSoc">
+			<xs:simpleType>
+				<xs:restriction base="xs:token">
+					<xs:minLength value="1"/>
+					<xs:maxLength value="1000"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="telSoc" type="typ:TelefonSType"/>
+		<xs:attribute name="faxSoc" type="typ:TelefonSType"/>
+		<xs:attribute name="mailSoc" type="typ:EmailSType"/>
+		<xs:attribute name="adrFisc">
+			<xs:simpleType>
+				<xs:restriction base="xs:token">
+					<xs:minLength value="1"/>
+					<xs:maxLength value="1000"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="telFisc" type="typ:TelefonSType"/>
+		<xs:attribute name="faxFisc" type="typ:TelefonSType"/>
+		<xs:attribute name="mailFisc" type="typ:EmailSType"/>
+		<xs:attribute name="casaAng" type="typ:CasaSType" use="required"/>
+		<xs:attribute name="tRisc">
+			<xs:simpleType>
+				<xs:restriction base="xs:double">
+					<xs:pattern value="\d?(\.\d{0,3})?"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="dat" type="typ:FlagSType"/>
+		<xs:attribute name="totalPlata_A" type="typ:Pozitiv15SType" use="required"/>
+	</xs:complexType>
+	<xs:group name="AngajatorFGroup">
+		<xs:sequence>
+			<xs:element name="angajatorF1" type="AngajatorF1Type"/>
+			<xs:element name="angajatorF2" type="AngajatorF2Type" minOccurs="0" maxOccurs="1000"/>
+		</xs:sequence>
+	</xs:group>
+	<xs:complexType name="AngajatorAType">
+		<xs:complexContent>
+			<xs:restriction base="xs:anyType">
+				<xs:attribute name="A_codOblig" type="typ:CodObligSType" use="required"/>
+				<xs:attribute name="A_codBugetar" type="typ:CodBugetarSType" use="required"/>
+				<xs:attribute name="A_datorat" type="typ:Pozitiv15SType" use="required"/>
+				<xs:attribute name="A_deductibil" type="typ:Pozitiv15SType"/>
+				<xs:attribute name="A_plata" type="typ:Pozitiv15SType" use="required"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="AngajatorBType">
+		<xs:complexContent>
+			<xs:restriction base="xs:anyType">
+				<xs:attribute name="B_cnp" type="typ:Pozitiv6SType" use="required"/>
+				<xs:attribute name="B_sanatate" type="typ:Pozitiv6SType" use="required"/>
+				<xs:attribute name="B_pensie" type="typ:Pozitiv5SType" use="required"/>
+				<xs:attribute name="B_brutSalarii" type="typ:Pozitiv15SType" use="required"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="AngajatorC1Type">
+		<xs:complexContent>
+			<xs:restriction base="xs:anyType">
+				<xs:attribute name="C1_11" type="typ:Pozitiv15SType"/>
+				<xs:attribute name="C1_12" type="typ:Pozitiv15SType"/>
+				<xs:attribute name="C1_13" type="typ:Pozitiv15SType"/>
+				<xs:attribute name="C1_21" type="typ:Pozitiv15SType"/>
+				<xs:attribute name="C1_22" type="typ:Pozitiv15SType"/>
+				<xs:attribute name="C1_23" type="typ:Pozitiv15SType"/>
+				<xs:attribute name="C1_31" type="typ:Pozitiv15SType"/>
+				<xs:attribute name="C1_32" type="typ:Pozitiv15SType"/>
+				<xs:attribute name="C1_33" type="typ:Pozitiv15SType"/>
+				<xs:attribute name="C1_T1" type="typ:Pozitiv15SType"/>
+				<xs:attribute name="C1_T2" type="typ:Pozitiv15SType"/>
+				<xs:attribute name="C1_T" type="typ:Pozitiv15SType"/>
+				<xs:attribute name="C1_T3" type="typ:Pozitiv15SType"/>
+				<xs:attribute name="C1_5" type="typ:Pozitiv15SType"/>
+				<xs:attribute name="C1_6" type="typ:Pozitiv15SType"/>
+				<xs:attribute name="C1_7" type="typ:Pozitiv15SType"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="AngajatorC2Type">
+		<xs:complexContent>
+			<xs:restriction base="xs:anyType">
+				<xs:attribute name="C2_11" type="typ:Pozitiv6SType"/>
+				<xs:attribute name="C2_12" type="typ:Pozitiv5SType"/>
+				<xs:attribute name="C2_13" type="typ:Pozitiv5SType"/>
+				<xs:attribute name="C2_14" type="typ:Pozitiv5SType"/>
+				<xs:attribute name="C2_15" type="typ:Pozitiv15SType"/>
+				<xs:attribute name="C2_16" type="typ:Pozitiv15SType"/>
+				<xs:attribute name="C2_21" type="typ:Pozitiv6SType"/>
+				<xs:attribute name="C2_22" type="typ:Pozitiv5SType"/>
+				<xs:attribute name="C2_24" type="typ:Pozitiv5SType"/>
+				<xs:attribute name="C2_26" type="typ:Pozitiv15SType"/>
+				<xs:attribute name="C2_31" type="typ:Pozitiv6SType"/>
+				<xs:attribute name="C2_32" type="typ:Pozitiv5SType"/>
+				<xs:attribute name="C2_34" type="typ:Pozitiv5SType"/>
+				<xs:attribute name="C2_36" type="typ:Pozitiv15SType"/>
+				<xs:attribute name="C2_41" type="typ:Pozitiv6SType"/>
+				<xs:attribute name="C2_42" type="typ:Pozitiv5SType"/>
+				<xs:attribute name="C2_44" type="typ:Pozitiv5SType"/>
+				<xs:attribute name="C2_46" type="typ:Pozitiv15SType"/>
+				<xs:attribute name="C2_51" type="typ:Pozitiv6SType"/>
+				<xs:attribute name="C2_52" type="typ:Pozitiv5SType"/>
+				<xs:attribute name="C2_54" type="typ:Pozitiv5SType"/>
+				<xs:attribute name="C2_56" type="typ:Pozitiv15SType"/>
+				<xs:attribute name="C2_T6" type="typ:Pozitiv15SType"/>
+				<xs:attribute name="C2_7" type="typ:Pozitiv15SType"/>
+				<xs:attribute name="C2_8" type="typ:Pozitiv15SType"/>
+				<xs:attribute name="C2_9" type="typ:Pozitiv15SType"/>
+				<xs:attribute name="C2_10" type="typ:Pozitiv15SType"/>
+				<xs:attribute name="C2_110" type="typ:Pozitiv15SType"/>
+				<xs:attribute name="C2_120" type="typ:Pozitiv15SType"/>
+				<xs:attribute name="C2_130" type="typ:Pozitiv15SType"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="AngajatorC3Type">
+		<xs:complexContent>
+			<xs:restriction base="xs:anyType">
+				<xs:attribute name="C3_11" type="typ:Pozitiv6SType"/>
+				<xs:attribute name="C3_12" type="typ:Pozitiv5SType"/>
+				<xs:attribute name="C3_13" type="typ:Pozitiv15SType"/>
+				<xs:attribute name="C3_14" type="typ:Pozitiv15SType"/>
+				<xs:attribute name="C3_21" type="typ:Pozitiv6SType"/>
+				<xs:attribute name="C3_22" type="typ:Pozitiv5SType"/>
+				<xs:attribute name="C3_23" type="typ:Pozitiv15SType"/>
+				<xs:attribute name="C3_24" type="typ:Pozitiv15SType"/>
+				<xs:attribute name="C3_31" type="typ:Pozitiv6SType"/>
+				<xs:attribute name="C3_32" type="typ:Pozitiv5SType"/>
+				<xs:attribute name="C3_33" type="typ:Pozitiv15SType"/>
+				<xs:attribute name="C3_34" type="typ:Pozitiv15SType"/>
+				<xs:attribute name="C3_41" type="typ:Pozitiv6SType"/>
+				<xs:attribute name="C3_42" type="typ:Pozitiv5SType"/>
+				<xs:attribute name="C3_43" type="typ:Pozitiv15SType"/>
+				<xs:attribute name="C3_44" type="typ:Pozitiv15SType"/>
+				<xs:attribute name="C3_total" type="typ:Pozitiv15SType"/>
+				<xs:attribute name="C3_suma" type="typ:Pozitiv15SType"/>
+				<xs:attribute name="C3_aj_nr" type="typ:Pozitiv6SType"/>
+				<xs:attribute name="C3_aj_suma" type="typ:Pozitiv15SType"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="AngajatorC4Type">
+		<xs:complexContent>
+			<xs:restriction base="xs:anyType">
+				<xs:attribute name="C4_scutitaSo" type="typ:Pozitiv15SType"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="AngajatorC5Type">
+		<xs:complexContent>
+			<xs:restriction base="xs:anyType">
+				<xs:attribute name="C5_subv" type="typ:SubvScutRedSType"/>
+				<xs:attribute name="C5_recuperat" type="typ:Pozitiv15SType"/>
+				<xs:attribute name="C5_restituit" type="typ:Pozitiv15SType"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="AngajatorC6Type">
+		<xs:complexContent>
+			<xs:restriction base="xs:anyType">
+				<xs:attribute name="C6_baza" type="typ:Pozitiv15SType" use="required"/>
+				<xs:attribute name="C6_ct" type="typ:Pozitiv15SType" use="required"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="AngajatorC7Type">
+		<xs:complexContent>
+			<xs:restriction base="xs:anyType">
+				<xs:attribute name="C7_baza" type="typ:Pozitiv15SType"/>
+				<xs:attribute name="C7_ct" type="typ:Pozitiv15SType"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="AngajatorDType">
+		<xs:complexContent>
+			<xs:restriction base="xs:anyType">
+				<xs:attribute name="D1" type="typ:Pozitiv6SType"/>
+				<xs:attribute name="D2" type="typ:Pozitiv6SType"/>
+				<xs:attribute name="D3" type="typ:Pozitiv5SType"/>
+				<xs:attribute name="D4" type="typ:Pozitiv15SType"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="AngajatorE1Type">
+		<xs:complexContent>
+			<xs:restriction base="xs:anyType">
+				<xs:attribute name="E1_venit" type="typ:Pozitiv15SType"/>
+				<xs:attribute name="E1_baza" type="typ:Pozitiv15SType"/>
+				<xs:attribute name="E1_ct" type="typ:Pozitiv15SType"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="AngajatorE2Type">
+		<xs:complexContent>
+			<xs:restriction base="xs:anyType">
+				<xs:attribute name="E2_11" type="typ:Pozitiv6SType"/>
+				<xs:attribute name="E2_12" type="typ:Pozitiv5SType"/>
+				<xs:attribute name="E2_14" type="typ:Pozitiv5SType"/>
+				<xs:attribute name="E2_16" type="typ:Pozitiv15SType"/>
+				<xs:attribute name="E2_21" type="typ:Pozitiv6SType"/>
+				<xs:attribute name="E2_22" type="typ:Pozitiv5SType"/>
+				<xs:attribute name="E2_24" type="typ:Pozitiv5SType"/>
+				<xs:attribute name="E2_26" type="typ:Pozitiv15SType"/>
+				<xs:attribute name="E2_31" type="typ:Pozitiv6SType"/>
+				<xs:attribute name="E2_32" type="typ:Pozitiv5SType"/>
+				<xs:attribute name="E2_34" type="typ:Pozitiv5SType"/>
+				<xs:attribute name="E2_36" type="typ:Pozitiv15SType"/>
+				<xs:attribute name="E2_41" type="typ:Pozitiv6SType"/>
+				<xs:attribute name="E2_42" type="typ:Pozitiv5SType"/>
+				<xs:attribute name="E2_44" type="typ:Pozitiv5SType"/>
+				<xs:attribute name="E2_46" type="typ:Pozitiv15SType"/>
+				<xs:attribute name="E2_51" type="typ:Pozitiv6SType"/>
+				<xs:attribute name="E2_52" type="typ:Pozitiv5SType"/>
+				<xs:attribute name="E2_54" type="typ:Pozitiv5SType"/>
+				<xs:attribute name="E2_56" type="typ:Pozitiv15SType"/>
+				<xs:attribute name="E2_66" type="typ:Pozitiv15SType"/>
+				<xs:attribute name="E2_7" type="typ:Pozitiv15SType"/>
+				<xs:attribute name="E2_8" type="typ:Pozitiv15SType"/>
+				<xs:attribute name="E2_9" type="typ:Pozitiv15SType"/>
+				<xs:attribute name="E2_10" type="typ:Pozitiv15SType"/>
+				<xs:attribute name="E2_110" type="typ:Pozitiv15SType"/>
+				<xs:attribute name="E2_120" type="typ:Pozitiv15SType"/>
+				<xs:attribute name="E2_130" type="typ:Pozitiv15SType"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="AngajatorE3Type">
+		<xs:complexContent>
+			<xs:restriction base="xs:anyType">
+				<xs:attribute name="E3_11" type="typ:Pozitiv6SType"/>
+				<xs:attribute name="E3_12" type="typ:Pozitiv5SType"/>
+				<xs:attribute name="E3_13" type="typ:Pozitiv15SType"/>
+				<xs:attribute name="E3_14" type="typ:Pozitiv15SType"/>
+				<xs:attribute name="E3_21" type="typ:Pozitiv6SType"/>
+				<xs:attribute name="E3_22" type="typ:Pozitiv5SType"/>
+				<xs:attribute name="E3_23" type="typ:Pozitiv15SType"/>
+				<xs:attribute name="E3_24" type="typ:Pozitiv15SType"/>
+				<xs:attribute name="E3_31" type="typ:Pozitiv6SType"/>
+				<xs:attribute name="E3_32" type="typ:Pozitiv5SType"/>
+				<xs:attribute name="E3_33" type="typ:Pozitiv15SType"/>
+				<xs:attribute name="E3_34" type="typ:Pozitiv15SType"/>
+				<xs:attribute name="E3_41" type="typ:Pozitiv6SType"/>
+				<xs:attribute name="E3_42" type="typ:Pozitiv5SType"/>
+				<xs:attribute name="E3_43" type="typ:Pozitiv15SType"/>
+				<xs:attribute name="E3_44" type="typ:Pozitiv15SType"/>
+				<xs:attribute name="E3_total" type="typ:Pozitiv15SType"/>
+				<xs:attribute name="E3_suma" type="typ:Pozitiv15SType"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="AngajatorE4Type">
+		<xs:complexContent>
+			<xs:restriction base="xs:anyType">
+				<xs:attribute name="E4_aj_nr" type="typ:Pozitiv6SType"/>
+				<xs:attribute name="E4_aj_suma" type="typ:Pozitiv15SType"/>
+			</xs:restriction>
+			<!--				<xs:attribute name="E4_baza" type="typ:Pozitiv15SType"/>
+				<xs:attribute name="E4_ct" type="typ:Pozitiv15SType"/>-->
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="AngajatorF1Type">
+		<xs:complexContent>
+			<xs:restriction base="xs:anyType">
+				<xs:attribute name="F1_suma" type="typ:Pozitiv15SType"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="AngajatorF2Type">
+		<xs:complexContent>
+			<xs:restriction base="xs:anyType">
+				<xs:attribute name="F2_id" type="typ:IdAsigSType" use="required"/>
+				<xs:attribute name="F2_cif" type="typ:CodFiscalSType" use="required"/>
+				<xs:attribute name="F2_suma" type="typ:Pozitiv15SType" use="required"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="AsiguratType">
+		<xs:sequence>
+			<xs:element name="coAsigurati" type="CoAsiguratiType" minOccurs="0" maxOccurs="3"/>
+			<xs:choice>
+				<xs:group ref="AsiguratAGroup"/>
+				<xs:group ref="AsiguratBGroup"/>
+				<xs:group ref="AsiguratCGroup"/>
+			</xs:choice>
+		</xs:sequence>
+		<xs:attribute name="idAsig" type="typ:IdAsigSType" use="required"/>
+		<xs:attribute name="cnpAsig" type="typ:CnpSType" use="required"/>
+		<xs:attribute name="numeAsig">
+			<xs:simpleType>
+				<xs:restriction base="xs:token">
+					<xs:minLength value="1"/>
+					<xs:maxLength value="75"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="prenAsig">
+			<xs:simpleType>
+				<xs:restriction base="xs:token">
+					<xs:minLength value="1"/>
+					<xs:maxLength value="75"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="cnpAnt" type="typ:CnpSType"/>
+		<xs:attribute name="numeAnt">
+			<xs:simpleType>
+				<xs:restriction base="xs:token">
+					<xs:minLength value="1"/>
+					<xs:maxLength value="75"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="prenAnt">
+			<xs:simpleType>
+				<xs:restriction base="xs:token">
+					<xs:minLength value="1"/>
+					<xs:maxLength value="75"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="dataAng" type="typ:DataSType"/>
+		<xs:attribute name="dataSf" type="typ:DataSType"/>
+		<xs:attribute name="casaSn" type="typ:CasaSType"/>
+		<xs:attribute name="asigCI" use="required">
+			<xs:simpleType>
+				<xs:restriction base="xs:short">
+					<xs:minInclusive value="1"/>
+					<xs:maxInclusive value="2"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="asigSO" use="required">
+			<xs:simpleType>
+				<xs:restriction base="xs:short">
+					<xs:minInclusive value="1"/>
+					<xs:maxInclusive value="2"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<!--<xs:attribute name="asigSO" type="typ:FlagSType" use="required"/>-->
+		<!--		<xs:attribute name="asigCI" type="typ:FlagSType"/>-->
+	</xs:complexType>
+	<xs:complexType name="CoAsiguratiType">
+		<xs:complexContent>
+			<xs:restriction base="xs:anyType">
+				<xs:attribute name="tip" type="typ:TipCoAsiguratSType" use="required"/>
+				<xs:attribute name="cnp" type="typ:CnpSType" use="required"/>
+				<xs:attribute name="nume" use="required">
+					<xs:simpleType>
+						<xs:restriction base="xs:token">
+							<xs:minLength value="1"/>
+							<xs:maxLength value="75"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:attribute>
+				<xs:attribute name="prenume" use="required">
+					<xs:simpleType>
+						<xs:restriction base="xs:token">
+							<xs:minLength value="1"/>
+							<xs:maxLength value="75"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:attribute>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="AsiguratAType">
+		<xs:complexContent>
+			<xs:restriction base="xs:anyType">
+				<xs:attribute name="A_1" type="typ:TipAsiguratSType" use="required"/>
+				<xs:attribute name="A_2" type="typ:FlagSType" use="required"/>
+				<xs:attribute name="A_3" type="typ:TipContractSType" use="required"/>
+				<xs:attribute name="A_4" type="typ:OreNormaZiSType" use="required"/>
+				<xs:attribute name="A_5" type="typ:Pozitiv15SType"/>
+				<xs:attribute name="A_6" type="typ:Pozitiv3SType"/>
+				<xs:attribute name="A_7" type="typ:Pozitiv3SType"/>
+				<xs:attribute name="A_8" type="typ:Pozitiv5SType"/>
+				<xs:attribute name="A_9" type="typ:Pozitiv15SType"/>
+				<xs:attribute name="A_10" type="typ:Pozitiv15SType"/>
+				<xs:attribute name="A_11" type="typ:Pozitiv15SType" use="required"/>
+				<xs:attribute name="A_12" type="typ:Pozitiv15SType" use="required"/>
+				<xs:attribute name="A_13" type="typ:Pozitiv15SType" use="required"/>
+				<xs:attribute name="A_14" type="typ:Pozitiv15SType" use="required"/>
+				<xs:attribute name="A_20" type="typ:Pozitiv15SType" use="required"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:group name="AsiguratAGroup">
+		<xs:sequence>
+			<xs:element name="asiguratA" type="AsiguratAType"/>
+			<xs:group ref="AsiguratAGroupExt" minOccurs="0"/>
+		</xs:sequence>
+	</xs:group>
+	<xs:group name="AsiguratAGroupExt">
+		<xs:sequence>
+			<xs:element name="asiguratC" type="AsiguratCType"/>
+			<xs:element name="asiguratD" type="AsiguratDType" minOccurs="0" maxOccurs="10"/>
+		</xs:sequence>
+	</xs:group>
+	<xs:group name="AsiguratBGroup">
+		<xs:sequence>
+			<xs:element name="asiguratB1" type="AsiguratB1Type" maxOccurs="5"/>
+			<xs:element name="asiguratB2" type="AsiguratB2Type" minOccurs="0"/>
+			<xs:element name="asiguratB3" type="AsiguratB3Type" minOccurs="0"/>
+			<xs:element name="asiguratB4" type="AsiguratB4Type"/>
+			<xs:element name="asiguratC" type="AsiguratCType" minOccurs="0"/>
+			<xs:element name="asiguratD" type="AsiguratDType" minOccurs="0" maxOccurs="10"/>
+		</xs:sequence>
+	</xs:group>
+	<xs:group name="AsiguratCGroup">
+		<xs:sequence>
+			<xs:element name="asiguratC" type="AsiguratCType"/>
+			<xs:element name="asiguratD" type="AsiguratDType" minOccurs="0" maxOccurs="10"/>
+		</xs:sequence>
+	</xs:group>
+	<xs:complexType name="AsiguratB1Type">
+		<xs:sequence>
+			<xs:element name="asiguratB11" type="AsiguratB11Type" minOccurs="0" maxOccurs="10"/>
+		</xs:sequence>
+		<xs:attribute name="B1_1" type="typ:TipAsiguratSType" use="required"/>
+		<xs:attribute name="B1_2" type="typ:FlagSType" use="required"/>
+		<xs:attribute name="B1_3" type="typ:TipContractSType" use="required"/>
+		<xs:attribute name="B1_4" type="typ:OreNormaZiSType" use="required"/>
+		<xs:attribute name="B1_5" type="typ:Pozitiv15SType"/>
+		<xs:attribute name="B1_6" type="typ:Pozitiv3SType"/>
+		<xs:attribute name="B1_7" type="typ:Pozitiv3SType"/>
+		<xs:attribute name="B1_8" type="typ:Pozitiv3SType"/>
+		<xs:attribute name="B1_9" type="typ:Pozitiv2SType"/>
+		<xs:attribute name="B1_10" type="typ:Pozitiv15SType"/>
+		<xs:attribute name="B1_15" type="typ:Pozitiv2SType"/>
+	</xs:complexType>
+	<xs:complexType name="AsiguratB11Type">
+		<xs:complexContent>
+			<xs:restriction base="xs:anyType">
+				<xs:attribute name="B11_1" type="typ:MotivScutireSType" use="required"/>
+				<xs:attribute name="B11_2" type="typ:Pozitiv15SType"/>
+				<xs:attribute name="B11_3" type="typ:Pozitiv15SType"/>
+				<xs:attribute name="B11_41" type="typ:Pozitiv15SType"/>
+				<xs:attribute name="B11_42" type="typ:Pozitiv15SType"/>
+				<xs:attribute name="B11_43" type="typ:Pozitiv15SType"/>
+				<xs:attribute name="B11_5" type="typ:Pozitiv15SType"/>
+				<xs:attribute name="B11_6" type="typ:Pozitiv15SType"/>
+				<xs:attribute name="B11_71" type="typ:Pozitiv15SType"/>
+				<xs:attribute name="B11_72" type="typ:Pozitiv15SType"/>
+				<xs:attribute name="B11_73" type="typ:Pozitiv15SType"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="AsiguratB2Type">
+		<xs:complexContent>
+			<xs:restriction base="xs:anyType">
+				<xs:attribute name="B2_1" type="typ:IdCondSpecSType"/>
+				<xs:attribute name="B2_2" type="typ:Pozitiv2SType"/>
+				<xs:attribute name="B2_3" type="typ:Pozitiv2SType"/>
+				<xs:attribute name="B2_4" type="typ:Pozitiv2SType"/>
+				<xs:attribute name="B2_5" type="typ:Pozitiv15SType"/>
+				<xs:attribute name="B2_6" type="typ:Pozitiv15SType"/>
+				<xs:attribute name="B2_7" type="typ:Pozitiv15SType"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="AsiguratB3Type">
+		<xs:complexContent>
+			<xs:restriction base="xs:anyType">
+				<xs:attribute name="B3_1" type="typ:Pozitiv2SType"/>
+				<xs:attribute name="B3_2" type="typ:Pozitiv2SType"/>
+				<xs:attribute name="B3_3" type="typ:Pozitiv2SType"/>
+				<xs:attribute name="B3_4" type="typ:Pozitiv2SType"/>
+				<xs:attribute name="B3_5" type="typ:Pozitiv2SType"/>
+				<xs:attribute name="B3_6" type="typ:Pozitiv2SType"/>
+				<xs:attribute name="B3_7" type="typ:Pozitiv15SType"/>
+				<xs:attribute name="B3_8" type="typ:Pozitiv2SType"/>
+				<xs:attribute name="B3_9" type="typ:Pozitiv15SType"/>
+				<xs:attribute name="B3_10" type="typ:Pozitiv15SType"/>
+				<xs:attribute name="B3_11" type="typ:Pozitiv15SType"/>
+				<xs:attribute name="B3_12" type="typ:Pozitiv15SType"/>
+				<xs:attribute name="B3_13" type="typ:Pozitiv15SType"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="AsiguratB4Type">
+		<xs:complexContent>
+			<xs:restriction base="xs:anyType">
+				<xs:attribute name="B4_1" type="typ:Pozitiv2SType"/>
+				<xs:attribute name="B4_2" type="typ:Pozitiv2SType"/>
+				<xs:attribute name="B4_3" type="typ:Pozitiv15SType"/>
+				<xs:attribute name="B4_4" type="typ:Pozitiv15SType"/>
+				<xs:attribute name="B4_5" type="typ:Pozitiv15SType"/>
+				<xs:attribute name="B4_6" type="typ:Pozitiv15SType"/>
+				<xs:attribute name="B4_7" type="typ:Pozitiv15SType"/>
+				<xs:attribute name="B4_8" type="typ:Pozitiv15SType"/>
+				<xs:attribute name="B4_14" type="typ:Pozitiv15SType"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="AsiguratCType">
+		<xs:complexContent>
+			<xs:restriction base="xs:anyType">
+				<xs:attribute name="C_1" type="typ:TipAsigAsimilatSType" use="required"/>
+				<xs:attribute name="C_2" type="typ:Pozitiv2SType"/>
+				<xs:attribute name="C_3" type="typ:Pozitiv2SType"/>
+				<xs:attribute name="C_4" type="typ:Pozitiv15SType"/>
+				<xs:attribute name="C_5" type="typ:Pozitiv2SType"/>
+				<xs:attribute name="C_6" type="typ:Pozitiv15SType"/>
+				<xs:attribute name="C_7" type="typ:Pozitiv15SType"/>
+				<xs:attribute name="C_8" type="typ:Pozitiv15SType"/>
+				<xs:attribute name="C_9" type="typ:Pozitiv15SType"/>
+				<xs:attribute name="C_10" type="typ:Pozitiv15SType"/>
+				<xs:attribute name="C_11" type="typ:Pozitiv15SType"/>
+				<xs:attribute name="C_17" type="typ:Pozitiv2SType"/>
+				<xs:attribute name="C_18" type="typ:Pozitiv15SType"/>
+				<xs:attribute name="C_19" type="typ:Pozitiv15SType"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="AsiguratDType">
+		<xs:complexContent>
+			<xs:restriction base="xs:anyType">
+				<xs:attribute name="D_1" use="required">
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:minLength value="1"/>
+							<xs:maxLength value="5"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:attribute>
+				<xs:attribute name="D_2" use="required">
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:minLength value="1"/>
+							<xs:maxLength value="10"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:attribute>
+				<xs:attribute name="D_3">
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<!--<xs:minLength value="1"/>-->
+							<xs:maxLength value="5"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:attribute>
+				<xs:attribute name="D_4">
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<!--<xs:minLength value="1"/>-->
+							<xs:maxLength value="10"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:attribute>
+				<xs:attribute name="D_5" type="typ:DataSType" use="required"/>
+				<xs:attribute name="D_6" type="typ:DataSType" use="required"/>
+				<xs:attribute name="D_7" type="typ:DataSType" use="required"/>
+				<xs:attribute name="D_8" type="typ:CnpSType"/>
+				<xs:attribute name="D_9" type="typ:CodIndemnizatieSType" use="required"/>
+				<xs:attribute name="D_10" type="typ:LocPrescriereSType" use="required"/>
+				<xs:attribute name="D_11" type="typ:CodUrgentaMCSType"/>
+				<xs:attribute name="D_12" type="typ:CodBoalaICASType"/>
+				<xs:attribute name="D_13">
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<!--<xs:minLength value="1"/>-->
+							<xs:maxLength value="10"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:attribute>
+				<xs:attribute name="D_14" type="typ:Pozitiv2SType"/>
+				<xs:attribute name="D_15" type="typ:Pozitiv2SType"/>
+				<xs:attribute name="D_16" type="typ:Pozitiv2SType"/>
+				<xs:attribute name="D_17" type="typ:Pozitiv6SType" use="required"/>
+				<xs:attribute name="D_18" type="typ:Pozitiv3SType" use="required"/>
+				<xs:attribute name="D_19" use="required">
+					<xs:simpleType>
+						<xs:restriction base="xs:double">
+							<xs:pattern value="\d{0,6}(\.\d{0,4})?"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:attribute>
+				<xs:attribute name="D_20" type="typ:Pozitiv15SType"/>
+				<xs:attribute name="D_21" type="typ:Pozitiv15SType"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+</xs:schema>

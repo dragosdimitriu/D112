@@ -1,0 +1,16 @@
+Clase pentru generarea si parsarea fisierelor XML utilizate in generarea declaratiei 112 in format pdf
+Fisiere:
+
+- D112.py
+Clase pentru parsarea fisierelor XML 
+Fiecarui camp al fisierului DecUnicaTypes.XSD ii corespund metode de setter si getter 
+
+- driver.py
+Foloseste clasele definite in D112.py pentru generarea fisierelui XML
+
+- read_db.py
+Folosit pentru citirea din fisierele .dbf de intrare
+In mod normal citirile se vor face din DB specifice aplicatiilor de gestiune. In cazul meu erau fisierele DBF
+
+- DecUnicaTypes.xsd
+Fisier furnizat de ANAF pentru declrarea structurilor si tipurilor de date. 
