@@ -13,4 +13,21 @@ Folosit pentru citirea din fisierele .dbf de intrare
 In mod normal citirile se vor face din DB specifice aplicatiilor de gestiune. In cazul meu erau fisierele DBF
 
 - DecUnicaTypes.xsd
-Fisier furnizat de ANAF pentru declrarea structurilor si tipurilor de date. 
+Fisier furnizat de ANAF pentru declrarea structurilor si tipurilor de date.
+
+
+###############
+Utilizare :
+
+Pasul 1:
+python driver.py > d112.xml
+
+Obs. Am folosit Python 2.6.1 Nu am realizat teste pe alte versiune de Python
+
+
+Pasul 2:
+Se descarcarca validatorul de pe siteul ANAF de la adresa http://static.anaf.ro/static/10/Anaf/declunica/kitD112_J_1_2_4.zip
+
+Pasul 3:
+Se valideaza fisierul XML obtinut. Daca fisierul nu genereaza erori se genereaza fisierul PDF . Fisierul PDF semant electronic 
+se depune online pe site-ul ANAF
